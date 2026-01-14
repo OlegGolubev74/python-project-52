@@ -12,3 +12,6 @@ start:
 
 render-start:
 	gunicorn task_manager.wsgi
+
+collectstatic:
+	uv run manage.py collectstatic --noinput
