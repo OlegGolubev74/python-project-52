@@ -15,3 +15,5 @@ TEMP/
 tmp.py
 404.html
 *.sqlite3
+staticfiles/
+static/
