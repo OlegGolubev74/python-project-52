@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from task_manager import views #шаг 2, 16.01.2026
 
 urlpatterns = [
+    #path("", views.index), #шаг 2, 16.01.2026
+    path('', views.HomePageView.as_view(), name='start_page'),#шаг 2, 17.01.2026
     path('admin/', admin.site.urls),
 ]
