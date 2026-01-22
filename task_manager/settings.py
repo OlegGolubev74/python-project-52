@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5', #шаг 2, 16.01.2026
     'task_manager',#шаг 2, 16.01.2026
+    'task_manager.users', #шаг 3, 19.01.2026 (еще не забывать добавку в apps.py соответствующего приложения и создать руками urls.py)
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru' #шаг 3
 
 TIME_ZONE = 'UTC'
 
@@ -141,3 +143,11 @@ STATIC_ROOT = BASE_DIR / "static"# шаг 2
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# шаг 3
+AUTH_USER_MODEL = 'users.User'
+
+# шаг 3 настройки аутентификации Django
+LOGIN_URL = 'login'  # URL для входа (Указывает Django, куда перенаправлять НЕАВТОРИЗОВАННЫХ пользователей)
+LOGIN_REDIRECT_URL = '/'  # Куда перенаправить после успешного входа (Куда перенаправлять после УСПЕШНОГО входа.)
+LOGOUT_REDIRECT_URL = '/' #Куда перенаправлять после выхода.

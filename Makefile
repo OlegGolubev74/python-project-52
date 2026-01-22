@@ -15,3 +15,7 @@ render-start:
 
 collectstatic:
 	uv run manage.py collectstatic --noinput
+
+migrate:
+	uv run manage.py makemigrations
+	uv run manage.py migrate
