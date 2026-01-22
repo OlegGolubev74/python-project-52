@@ -27,7 +27,6 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = MyUserCreationForm
     template_name = "users/create.html"
     success_url = reverse_lazy("login")
-    #success_message = _("User is successfully registered")
     success_message = 'Пользователь успешно зарегистрирован'
 
 '''
@@ -77,34 +76,3 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
 
         # 3. Если проверки пройдены — работаем дальше
         return super().dispatch(request, *args, **kwargs)
-
-
-
-
-
-
-
-
-'''
-class UsersListView(TemplateView):
-    """
-    Класс-представление для главной страницы приложения users.
-    Наследует TemplateView и переопределяет контекст.
-    """
-    #Указываем, какой шаблон использовать
-    #Эквивалентно template_name="index.html" в render()
-    template_name = "users/index1.html"
-    
-    #Переопределение контекста
-    def get_context_data(self, **kwargs): #метод, который собирает контекст для шаблона
-        """
-        Переопределяем метод для добавления своего контекста.
-        """
-        # Получаем контекст родительского класса
-        context = super().get_context_data(**kwargs)
-        
-        # Добавляем свои данные в контекст
-        #context["who"] = "World! Это самая главная страница сайта."
-        print('Показали стартовую страницу приложения users index1.html')
-        return context
-'''
