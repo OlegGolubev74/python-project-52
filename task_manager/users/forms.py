@@ -14,14 +14,6 @@ class MyUserCreationForm(UserCreationForm):
             'password2',
         )
 
-'''
-class UpdateUserForm(MyUserCreationForm):
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        if User.objects.filter(username=username).exists():
-            username = self.cleaned_data['username']
-        return username
-'''
 
 class UpdateUserForm(forms.ModelForm):
     class Meta:

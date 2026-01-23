@@ -19,3 +19,6 @@ collectstatic:
 migrate:
 	uv run manage.py makemigrations
 	uv run manage.py migrate
+
+test:
+	uv run manage.py test
