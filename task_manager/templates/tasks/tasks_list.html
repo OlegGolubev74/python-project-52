@@ -6,6 +6,16 @@
   <h1 class="my-4">Задачи</h1>
   <a class="btn btn-primary mb-3" href="{% url 'task_create' %}">Создать задачу</a>
 
+  {# шаг 7 раздел для фильтрации #}
+  <div class="card mb-3">
+    <div class="card-body bg-light">
+      <form method="get" class="form-inline">
+        {% bootstrap_form filter.form bound_css_class='' %}
+        <input class="btn btn-primary ml-2" type="submit" value="Показать">
+      </form>
+    </div>
+  </div>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -14,6 +24,7 @@
         <th>Статус</th>
         <th>Автор</th>
         <th>Исполнитель</th>
+        <th>Метки</th> {# добавил в шаге  6 #}
         <th>Дата создания</th>
         <th></th>
       </tr>
@@ -27,7 +38,15 @@
         </td>
         <td>{{ task.status }}</td>
         <td>{{ task.author }}</td>
-        <td>{{ task.executor }}</td>
+        <td>{{ task.executor|default:"-" }}</td>
+        <td>
+            {# вывод списка меток #}
+            {% for label in task.labels.all %}
+                <span class="badge bg-secondary">{{ label.name }}</span>
+            {% empty %}
+                {# меток нет, тогда ничего не выводим или ставим прочерк #}
+            {% endfor %}
+        </td>
         <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
         <td>
             <a href="{% url 'task_update' pk=task.id %}">Изменить</a>

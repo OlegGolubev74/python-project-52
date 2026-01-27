@@ -6,6 +6,10 @@ from django.urls import reverse_lazy
 from .forms import StatusForm 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+# шаг 6, добавили импорты для защиты от удаления
+from django.shortcuts import redirect
+from django.contrib import messages
+
 
 '''
 def index(request):
@@ -36,3 +40,10 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'statuses/delete.html'
     success_url = reverse_lazy('statuses_list')
     success_message = 'Статус успешно удален'
+    # отрабатываем, что нельзя удалять статус, если он связан с какой-либо задачей
+    def form_valid(self, form):
+        if self.get_object().task_set.exists():
+            messages.error(self.request, 'Невозможно удалить статус, потому что он используется')
+            return redirect('statuses_list')
+        
+        return super().form_valid(form)

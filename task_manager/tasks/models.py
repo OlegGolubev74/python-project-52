@@ -1,6 +1,7 @@
 from django.db import models
 from task_manager.statuses.models import Status
 from task_manager.users.models import User
+from task_manager.labels.models import Label #шаг 6
 
 class Task(models.Model):
     name = models.CharField("Имя", max_length=150)
@@ -20,11 +21,19 @@ class Task(models.Model):
         on_delete=models.PROTECT, 
         related_name='executed_tasks',
         null=True,
-        blank=True, #Может быть пустым
+        blank=True, #поле Может быть и пустым
         verbose_name="Исполнитель"
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
+
+    # шаг 6, добавляем поле для меток
+    labels = models.ManyToManyField(
+        Label, 
+        blank=True, #поле может быть и пустым
+        related_name='tasks', 
+        verbose_name="Метки"
+    )
 
     def __str__(self):
         return self.name

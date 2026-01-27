@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'task_manager.users', #шаг 3, 19.01.2026 (еще не забывать добавку в apps.py соответствующего приложения и создать руками urls.py)
     'task_manager.statuses', #шаг 4, 23.01.2026
     'task_manager.tasks', #шаг 5, 24.01.2026
+    'task_manager.labels', #шаг 6
+    'django_filters',
 ]
 
 MIDDLEWARE = [

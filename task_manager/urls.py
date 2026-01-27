@@ -27,4 +27,5 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view(), name='logout'), #шаг 3
     path('statuses/', include('task_manager.statuses.urls'), name='statuses_list'), #шаг4 23.01.2025
     path('tasks/', include('task_manager.tasks.urls'), name='tasks_list'),#шаг5 24.01.2025
+    path('labels/', include('task_manager.labels.urls'), name='labels_list'), #шаг 6
 ]

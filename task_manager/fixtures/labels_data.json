@@ -1,0 +1,50 @@
+[
+{
+  "model": "labels.label",
+  "pk": 5,
+  "fields": {
+    "name": "Метка4",
+    "created_at": "2026-01-24T21:29:31.639Z"
+  }
+},
+{
+  "model": "labels.label",
+  "pk": 6,
+  "fields": {
+    "name": "Метка5",
+    "created_at": "2026-01-24T21:54:48.752Z"
+  }
+},
+{
+  "model": "labels.label",
+  "pk": 7,
+  "fields": {
+    "name": "Метка6",
+    "created_at": "2026-01-24T21:54:56.020Z"
+  }
+},
+{
+  "model": "labels.label",
+  "pk": 8,
+  "fields": {
+    "name": "Метка77",
+    "created_at": "2026-01-24T21:55:01.340Z"
+  }
+},
+{
+  "model": "labels.label",
+  "pk": 9,
+  "fields": {
+    "name": "Метка8",
+    "created_at": "2026-01-24T21:55:06.824Z"
+  }
+},
+{
+  "model": "labels.label",
+  "pk": 10,
+  "fields": {
+    "name": "Метка9",
+    "created_at": "2026-01-24T21:55:12.617Z"
+  }
+}
+]
