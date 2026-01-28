@@ -1,11 +1,18 @@
 from django.test import TestCase
 from django.urls import reverse
+
 from task_manager.labels.models import Label
-from task_manager.users.models import User
 from task_manager.tasks.models import Task
+from task_manager.users.models import User
+
 
 class LabelTest(TestCase):
-    fixtures = ['users_data.json', 'statuses_data.json', 'labels_data.json', 'tasks_data.json']
+    fixtures = [
+        'users_data.json', 
+        'statuses_data.json', 
+        'labels_data.json', 
+        'tasks_data.json'
+    ]
 
     def setUp(self):
         # берем первого пользователя из фикстуры для авторизации
@@ -16,10 +23,11 @@ class LabelTest(TestCase):
         self.label = Label.objects.first()
 
     def test_labels_list(self):
-        #страница со списком открывается 
+        # страница со списком открывается 
         response = self.client.get(reverse('labels_list'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, self.label.name) #и метка там есть на странице
+        # и метка там есть на странице
+        self.assertContains(response, self.label.name) 
 
     def test_create_label(self):
         # новая метка создается
@@ -42,7 +50,7 @@ class LabelTest(TestCase):
         # Создаем временную метку, и удаляем ее
         temp_label = Label.objects.create(name='Временная')
         url = reverse('label_delete', kwargs={'pk': temp_label.pk})
-        response = self.client.post(url)
+        self.client.post(url)
         
         self.assertFalse(Label.objects.filter(name='Временная').exists())
 

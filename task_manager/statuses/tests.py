@@ -1,7 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
+
 from task_manager.statuses.models import Status
 from task_manager.users.models import User
+
 
 class StatusTest(TestCase):
     fixtures = ['statuses_data.json', 'users_data.json']
@@ -24,12 +26,13 @@ class StatusTest(TestCase):
 
     def test_status_update(self):
         url = reverse('status_update', kwargs={'pk': self.status.pk})
-        response = self.client.post(url, {'name': 'Изменено'})
+        self.client.post(url, {'name': 'Изменено'})
+        
         self.status.refresh_from_db()
         self.assertEqual(self.status.name, 'Изменено')
 
     def test_status_delete(self):
         temp_status = Status.objects.create(name='Удали меня')
         url = reverse('status_delete', kwargs={'pk': temp_status.pk})
-        response = self.client.post(url)
+        self.client.post(url)
         self.assertFalse(Status.objects.filter(name='Удали меня').exists())

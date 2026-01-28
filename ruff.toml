@@ -4,12 +4,6 @@ line-length = 80
   # init modules can contain the local imports, logic, unused imports
 "__init__.py" = ["F401"]
 
-# Добавляем исключение для директории migrations
-"migrations/" = ["*"]  # Исключаем любые проверки в директории migrations
-
-# Добавляем исключение для файла settings.py
-"settings.py" = ["*"]  # Полностью исключаем проверку настроек
-
 [lint]
 preview = true
 select = ["E", "F", "I", "C90"]

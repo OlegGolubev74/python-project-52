@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 import os
-import dj_database_url
-#import rollbar
-from dotenv import load_dotenv
 from pathlib import Path
 
+import dj_database_url
 
+#import rollbar
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,25 +51,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_bootstrap5', #шаг 2, 16.01.2026
-    'task_manager', #шаг 2, 16.01.2026
-    'task_manager.users', #шаг 3, 19.01.2026 (еще не забывать добавку в apps.py соответствующего приложения и создать руками urls.py)
-    'task_manager.statuses', #шаг 4, 23.01.2026
-    'task_manager.tasks', #шаг 5, 24.01.2026
-    'task_manager.labels', #шаг 6
+    'django_bootstrap5',
+    'task_manager',
+    'task_manager.users',
+    'task_manager.statuses',
+    'task_manager.tasks',
+    'task_manager.labels',
     'django_filters',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',    
-    'whitenoise.middleware.WhiteNoiseMiddleware', #шаг 2
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # шаг 2
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware', # шаг8
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -78,11 +78,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #'DIRS': [],
-        'DIRS': [BASE_DIR / 'templates'],#шаг 2, 16.01.2026
+        'DIRS': [BASE_DIR / 'templates'],  # шаг 2, 16.01.2026
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',#шаг 2, 17.01.2026
+                'django.template.context_processors.debug',  # шаг 2, 17.01.2026
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -169,7 +169,7 @@ ROLLBAR = {
 
 # 2. Этот блок инициализирует Rollbar для отправки ошибок
 if not DEBUG and os.getenv('ROLLBAR_TOKEN'):
-    import rollbar    
+    import rollbar
     rollbar.init(
         access_token=os.getenv('ROLLBAR_TOKEN'),
         environment='production',

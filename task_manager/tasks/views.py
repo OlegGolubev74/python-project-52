@@ -1,13 +1,19 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from django.contrib import messages
-from .models import Task
+from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    UpdateView,
+)
+from django_filters.views import FilterView
+
+from .filters import TaskFilter  # шаг 7
 from .forms import TaskForm
-from django_filters.views import FilterView #шаг 7
-from .filters import TaskFilter #шаг 7
+from .models import Task
 
 ''' предыдущая версия класса до шага 7
 class TaskListView(LoginRequiredMixin, ListView):
@@ -15,19 +21,25 @@ class TaskListView(LoginRequiredMixin, ListView):
     template_name = 'tasks/tasks_list.html'
     context_object_name = 'tasks'
 '''
+
+
 class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
     template_name = 'tasks/tasks_list.html'
     context_object_name = 'tasks'
-    filterset_class = TaskFilter # шаг 7, указываем класс фильтра
-    
+    filterset_class = TaskFilter  # шаг 7, указываем класс фильтра
+
     def get_queryset(self):
-        return Task.objects.select_related('status', 'author', 'executor').prefetch_related('labels')
+        return Task.objects.select_related(
+            'status', 'author', 'executor'
+        ).prefetch_related('labels')
+
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = 'tasks/task_detail.html'
     context_object_name = 'task'
+
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Task
@@ -41,12 +53,14 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+
 class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/update.html'
     success_url = reverse_lazy('tasks_list')
     success_message = 'Задача успешно изменена'
+
 
 class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Task

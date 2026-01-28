@@ -1,12 +1,19 @@
 from django.test import TestCase
 from django.urls import reverse
+
+from task_manager.labels.models import Label
+from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 from task_manager.users.models import User
-from task_manager.statuses.models import Status
-from task_manager.labels.models import Label
+
 
 class TaskTest(TestCase):
-    fixtures = ['users_data.json', 'statuses_data.json', 'labels_data.json', 'tasks_data.json']
+    fixtures = [
+        'users_data.json',
+        'statuses_data.json',
+        'labels_data.json',
+        'tasks_data.json',
+    ]
 
     def setUp(self):
         self.user = User.objects.first()

@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
+
 from task_manager.users.models import User
+
 
 class UserTest(TestCase):
     fixtures = ['users_data.json']

@@ -1,13 +1,19 @@
 from django.db import models
+
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.users.models import User
-from task_manager.labels.models import Label #шаг 6
+
 
 class Task(models.Model):
     name = models.CharField("Имя", max_length=150)
     description = models.TextField("Описание", blank=True)
     
-    status = models.ForeignKey(Status, on_delete=models.PROTECT, verbose_name="Статус")
+    status = models.ForeignKey(
+        Status,
+        on_delete=models.PROTECT,
+        verbose_name="Статус",
+    )
     
     author = models.ForeignKey(
         User, 
@@ -21,7 +27,7 @@ class Task(models.Model):
         on_delete=models.PROTECT, 
         related_name='executed_tasks',
         null=True,
-        blank=True, #поле Может быть и пустым
+        blank=True,
         verbose_name="Исполнитель"
     )
 
@@ -30,7 +36,7 @@ class Task(models.Model):
     # шаг 6, добавляем поле для меток
     labels = models.ManyToManyField(
         Label, 
-        blank=True, #поле может быть и пустым
+        blank=True,
         related_name='tasks', 
         verbose_name="Метки"
     )
