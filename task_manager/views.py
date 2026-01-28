@@ -21,6 +21,7 @@ def index(request):
 
 #шаг 2 17.01.2025
 class HomePageView(TemplateView):
+
     """
     Класс-представление для главной страницы.
     Наследует TemplateView и переопределяет контекст.
@@ -31,6 +32,7 @@ class HomePageView(TemplateView):
     
     #Переопределение контекста
     def get_context_data(self, **kwargs): #метод, который собирает контекст для шаблона
+        #division_by_zero = 1 / 0 
         """
         Переопределяем метод для добавления своего контекста.
         """

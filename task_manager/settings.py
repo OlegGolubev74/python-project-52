@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import os
 import dj_database_url
+#import rollbar
 from dotenv import load_dotenv
 from pathlib import Path
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -59,7 +61,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',    
     'whitenoise.middleware.WhiteNoiseMiddleware', #шаг 2
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware', # шаг8
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -155,3 +158,20 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = 'login'  # URL для входа (Указывает Django, куда перенаправлять НЕАВТОРИЗОВАННЫХ пользователей)
 LOGIN_REDIRECT_URL = '/'  # Куда перенаправить после успешного входа (Куда перенаправлять после УСПЕШНОГО входа.)
 LOGOUT_REDIRECT_URL = '/' #Куда перенаправлять после выхода.
+
+'''Отрабатываем Rollbar'''
+# 1. Этот блок нужен для Django middleware
+ROLLBAR = {
+    "access_token": os.getenv("ROLLBAR_TOKEN"),
+    "environment": "production",
+    "root": BASE_DIR,
+}
+
+# 2. Этот блок инициализирует Rollbar для отправки ошибок
+if not DEBUG and os.getenv('ROLLBAR_TOKEN'):
+    import rollbar    
+    rollbar.init(
+        access_token=os.getenv('ROLLBAR_TOKEN'),
+        environment='production',
+        root=BASE_DIR,
+    )
