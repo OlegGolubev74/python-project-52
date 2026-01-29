@@ -21,7 +21,7 @@ class UpdateUserForm(forms.ModelForm):
     password1 = forms.CharField(
         widget=forms.PasswordInput(render_value=True),
         required=False,
-        label="Новый пароль",
+        label="Пароль",
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(render_value=True),
