@@ -32,6 +32,17 @@
           <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
         </div>
 
+        <div class="row p-1">
+          <div class="col">Метки:</div>
+          <div class="col">
+            {% for label in task.labels.all %}
+              <span class="badge bg-secondary">{{ label.name }}</span>
+            {% empty %}
+              <span>—</span>
+            {% endfor %}
+          </div>
+        </div>
+
         
         <div class="row p-1">
           <div class="col">
