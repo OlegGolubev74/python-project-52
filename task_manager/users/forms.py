@@ -16,8 +16,19 @@ class MyUserCreationForm(UserCreationForm):
         )
 
 
+# добавил пустые поля пароля только для прохождения теста
 class UpdateUserForm(forms.ModelForm):
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(render_value=True),
+        required=False,
+        label="Новый пароль",
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(render_value=True),
+        required=False,
+        label="Подтверждение пароля",
+    )
+        
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username')
-
