@@ -25,6 +25,10 @@ jobs:
           uv pip install coverage
 
       - name: Generate Coverage Report
+        env:
+          SECRET_KEY: "django-insecure-test-key-for-ci-1234567890abcdefghijklmnopqrstuvwxyz"
+          DATABASE_URL: "sqlite:///:memory:"
+          DEBUG: "False"
         run: |
           uv run coverage run --source='.' manage.py test
           uv run coverage xml
@@ -33,7 +37,6 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: >
             -Dsonar.projectKey=OlegGolubev74_python-project-52
