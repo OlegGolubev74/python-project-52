@@ -27,7 +27,6 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-g6tw@!1&u1-*_36peax#8$qemf%*^z&b6b-unmzopz4af4)xbx'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -39,8 +38,6 @@ ALLOWED_HOSTS = ['python-project-52-vc5e.onrender.com',
                   'localhost', 
                   '127.0.0.1',
                   'webserver']
-
-#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -131,8 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-#LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'ru-ru' #шаг 3
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 

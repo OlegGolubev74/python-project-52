@@ -1,6 +1,10 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/OlegGolubev74/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/OlegGolubev74/python-project-52/actions)
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=OlegGolubev74_python-project-52)](https://sonarcloud.io/summary/new_code?id=OlegGolubev74_python-project-52)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=OlegGolubev74_python-project-52&metric=coverage)](https://sonarcloud.io/summary/new_code?id=OlegGolubev74_python-project-52)
+
 
 ### Демонстрационный проект
 https://python-project-52-vc5e.onrender.com
