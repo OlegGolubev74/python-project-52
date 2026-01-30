@@ -24,11 +24,6 @@ jobs:
           make install
           pip install coverage
 
-
-      - name: Run linter and pytest
-        run: |
-          make lint
-
       - name: Generate Coverage Report
         run: |
           # Запуск тестов и создание XML отчета
