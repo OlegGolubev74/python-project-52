@@ -1,4 +1,3 @@
-# from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -11,11 +10,6 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from task_manager.statuses.models import Status
 
 from .forms import StatusForm
-
-'''
-def index(request):
-    return HttpResponse("-------------Главная страница приложения Статусы-----")
-'''
 
 
 class StatusListView(LoginRequiredMixin, ListView):
